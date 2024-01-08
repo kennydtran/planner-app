@@ -31,7 +31,7 @@ export default function App() {
   const onDateClick = (date) => {
     const formattedDate = dayjs(date).format('YYYY-MM-DD');
     setSelectedDate(formattedDate);
-    moveCalendar(hasMoved, setHasMoved, calendarOffset, setCalendarOffset, 350);
+    moveCalendar(hasMoved, setHasMoved, calendarOffset, setCalendarOffset, 200);
     setIsAnimationComplete(false);
     setShowTextBoxes(true);
     setTimeout(() => {
@@ -108,17 +108,19 @@ export default function App() {
             <div className="grid grid-cols-7">
               {generateDate(today.month(), today.year()).map(
                 ({ date, currentMonth, today }, index) => {
-                  const hoverClass = currentMonth
-                    ? "hover:bg-softbr hover:text-white"
-                    : "hover:bg-br2";
                   const hoverClass2 = today
-                    ? "text-matcha2 hover:bg-matcha2 hover:text-white"
+                  ? "text-matcha2 hover:bg-matcha2 hover:text-white"
+                  : "hover:bg-br2 hover:text-white";
+                 
+                  const hoverClass = currentMonth - today
+                    ? "hover:bg-softbr text-softbr"
                     : "hover:bg-br2";
+
                   const isSelectedDate = selectedDate === dayjs(date).format('YYYY-MM-DD');
 
                   let backgroundClass = '';
                   if (isSelectedDate && today) {
-                    backgroundClass = 'bg-matcha2 text-gray-50';
+                    backgroundClass = 'bg-matcha2 text-white';
                   } else if (isSelectedDate) {
                     backgroundClass = 'bg-br2 text-white';
                   }
@@ -126,7 +128,7 @@ export default function App() {
                   return (
                     <div
                       key={index}
-                      className={`${hoverClass2} ${backgroundClass} select-none scale-75 hover:scale-100 cursor-pointer transition duration-300 text-[36px] text-softbr font-light font-sans flex justify-center items-center h-28 rounded-[30px] ${hoverClass} `}
+                      className={`${hoverClass2} ${backgroundClass} select-none scale-75 hover:scale-100 cursor-pointer transition duration-300 text-[36px] font-light font-sans flex justify-center items-center h-28 rounded-[30px] ${hoverClass} `}
                     onClick={() => {
                       if (currentMonth) {
                         onDateClick(date);
