@@ -24,18 +24,28 @@ export default function App() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showTextBoxes, setShowTextBoxes] = useState(false);
 
+  const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+
+  
+
   const onDateClick = (date) => {
     const formattedDate = dayjs(date).format('YYYY-MM-DD');
     setSelectedDate(formattedDate);
     moveCalendar(hasMoved, setHasMoved, calendarOffset, setCalendarOffset, 350);
+    setIsAnimationComplete(false);
     setShowTextBoxes(true);
+    setTimeout(() => {
+      setIsAnimationComplete(true);
+    }, 600);
   };
   
 
   const handleClickOutside = (event) => {
     if (calendarRef.current && !calendarRef.current.contains(event.target)) {
       moveCalendarOriginal(setHasMoved, setCalendarOffset);
+      setIsAnimationComplete(false);
       setShowTextBoxes(false);
+      setSelectedDate(null);
     }
   };
 
@@ -76,7 +86,8 @@ export default function App() {
           }}
         />
       </div>
-      <div ref={calendarRef} className="flex justify-center items-center w-full h-full pt-3">
+      <div className="flex-container">
+      <div ref={calendarRef} className="flex mx-auto justify-center items-center w-[800px] h-full pt-3">
         <div
           className={`calendar-container w-[800px] h-[725px] border-2 border-br2 rounded-[35px] select-none`}
           style={{ transform: `translateX(${calendarOffset}px)` }}
@@ -103,17 +114,25 @@ export default function App() {
                   const hoverClass2 = today
                     ? "text-matcha2 hover:bg-matcha2 hover:text-white"
                     : "hover:bg-br2";
+                  const isSelectedDate = selectedDate === dayjs(date).format('YYYY-MM-DD');
+
+                  let backgroundClass = '';
+                  if (isSelectedDate && today) {
+                    backgroundClass = 'bg-matcha2 text-gray-50';
+                  } else if (isSelectedDate) {
+                    backgroundClass = 'bg-br2 text-white';
+                  }
 
                   return (
                     <div
                       key={index}
-                      className={`${hoverClass2} select-none scale-75 hover:scale-100 cursor-pointer transition duration-300 text-[36px] text-softbr font-light font-sans flex justify-center items-center h-28 rounded-[30px] ${hoverClass} `}
-                      onClick={() => {
-                        if (currentMonth && !hasMoved) {
-                          onDateClick(date);
-                        }
-                      }}
-                      
+                      className={`${hoverClass2} ${backgroundClass} select-none scale-75 hover:scale-100 cursor-pointer transition duration-300 text-[36px] text-softbr font-light font-sans flex justify-center items-center h-28 rounded-[30px] ${hoverClass} `}
+                    onClick={() => {
+                      if (currentMonth) {
+                        onDateClick(date);
+                      }
+                    }}
+
                     >
                       <h1
                         className={OutsideDates(
@@ -129,8 +148,11 @@ export default function App() {
               )}
             </div>
           </div>
+
         </div>
-        <TextBoxes selectedDate={selectedDate} isVisible={showTextBoxes} />
+        <TextBoxes selectedDate={selectedDate} isVisible={showTextBoxes && isAnimationComplete} />
+        </div>
+
       </div>
     </div>
   );
