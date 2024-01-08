@@ -7,9 +7,10 @@ module.exports = {
     extend: {
       colors: {
         'br2': '#f2ded0',
-        'softbr': '#d4b39d',
+        'softbr': '#bd9e8a',
         'matcha2': '#7e946a',
-        'br': '#9c7a64'
+        'br': '#826857',
+        'brback': '#d4c2b6'
       },
     },
   },

@@ -36,9 +36,9 @@ export default function TextBoxes({ selectedDate, isVisible }) {
 
   return (
     <div className="text-box-container">
-      <textarea className='w-[300px] h-[235px] p-[20px] rounded-[30px] border-2 border-br2 placeholder:text-softbr placeholder:font-light select-none text-br' style={{ outline: 'none'}} value={reminders} onChange={(e) => setReminders(e.target.value)} placeholder="Reminders" />
-      <textarea className='w-[300px] h-[235px] p-[20px] rounded-[30px] border-2 border-br2 placeholder:text-softbr placeholder:font-light select-none text-br' style={{ outline: 'none'}} value={dailyTasks} onChange={(e) => setDailyTasks(e.target.value)} placeholder="Daily Tasks" />
-      <textarea className='w-[300px] h-[235px] p-[20px] rounded-[30px] border-2 border-br2 placeholder:text-softbr placeholder:font-light select-none text-br' style={{ outline: 'none'}} value={upcomingEvents} onChange={(e) => setUpcomingEvents(e.target.value)} placeholder="Upcoming Events" />
+      <textarea className='w-[300px] h-[237px] p-[20px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' style={{ outline: 'none'}} value={reminders} onChange={(e) => setReminders(e.target.value)} placeholder="Reminders" />
+      <textarea className='w-[300px] h-[237px] p-[20px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' style={{ outline: 'none'}} value={dailyTasks} onChange={(e) => setDailyTasks(e.target.value)} placeholder="Daily Tasks" />
+      <textarea className='w-[300px] h-[237px] p-[20px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' style={{ outline: 'none'}} value={upcomingEvents} onChange={(e) => setUpcomingEvents(e.target.value)} placeholder="Upcoming Events" />
     </div>
   );
 }

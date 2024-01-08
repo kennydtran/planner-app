@@ -1,5 +1,6 @@
 .calendar-container {
     transition: transform 0.6s ease-in-out;
+    overflow: hidden;
 }
 
 .text-box-container {
@@ -19,4 +20,8 @@
     margin-left: 150px;
 }
 
+body {
+    overflow-y: hidden; /* This will hide the vertical scrollbar */
+    height: 100%; /* This makes sure the body takes the full viewport height */
+  }
 
