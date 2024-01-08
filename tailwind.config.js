@@ -6,10 +6,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'matcha': '#a0b682',
-        'softbr': '#d99b77',
-        'br': '#73655d',
-        'lightbr': '#f2ded0'
+        'br2': '#f2ded0',
+        'softbr': '#d4b39d',
+        'matcha2': '#7e946a',
+        'br': '#9c7a64'
       },
     },
   },

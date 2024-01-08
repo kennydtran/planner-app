@@ -64,6 +64,6 @@ export const months = [
     "august",
     "september",
     "october",
-    "movember",
+    "november",
     "december",
 ];

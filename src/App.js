@@ -1,9 +1,11 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { generateDate, months } from "./utils/Calendar";
 import OutsideDates from "./utils/OutsideDates";
 import dayjs from "dayjs";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { moveCalendar, moveCalendarOriginal } from "./utils/CalendarMovement";
+import TextBoxes from './utils/UserText';
 
 export default function App() {
   console.log(generateDate());
@@ -14,31 +16,72 @@ export default function App() {
 
   const [today, setToday] = useState(currentDate);
 
+  const [hasMoved, setHasMoved] = useState(false);
+  const [calendarOffset, setCalendarOffset] = useState(0);
+
+  const calendarRef = useRef(null);
+
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [showTextBoxes, setShowTextBoxes] = useState(false);
+
+  const onDateClick = (date) => {
+    const formattedDate = dayjs(date).format('YYYY-MM-DD');
+    setSelectedDate(formattedDate);
+    moveCalendar(hasMoved, setHasMoved, calendarOffset, setCalendarOffset, 350);
+    setShowTextBoxes(true);
+  };
+  
+
+  const handleClickOutside = (event) => {
+    if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+      moveCalendarOriginal(setHasMoved, setCalendarOffset);
+      setShowTextBoxes(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div>
-      <h1 className="px-10 py-5 font-bold text-[50px] text-br select-none hover:scale-110 hover:translate-x-20 duration-300">
+      <h1 className="pl-14 pt-4 w-[460px] font-bold text-[50px] text-br select-none hover:scale-110 duration-300 drop-shadow-md hover:drop-shadow-xl">
         {months[today.month()]}, {today.year()}
       </h1>
-      <div className="flex justify-center items-center gap-5 text-[20px]">
+      <div
+        className={`calendar-container flex justify-center items-center gap-5 text-[20px] pt-8`}
+        style={{ transform: `translateX(${calendarOffset}px)` }}
+      >
         <MdKeyboardArrowLeft
-          className="w-8 h-8 cursor-pointer hover:bg-lightbr rounded-[16px] hover:scale-125 ease-in-out duration-300"
+          className="w-8 h-8 cursor-pointer text-br hover:bg-br2 rounded-[16px] hover:text-softbr hover:drop-shadow-md hover:scale-125 ease-in-out duration-300"
           onClick={() => {
             setToday(today.month(today.month() - 1));
           }}
         />
-        <h1 className="pb-1 px-2 bg-white rounded-[16px] cursor-pointer select-none hover:bg-matcha hover:scale-110 ease-in-out duration-300"onClick={() => {
+        <h1
+          className="pb-1 px-2 bg-white text-br font-semibold rounded-[16px] cursor-pointer select-none hover:bg-matcha2 hover:text-white hover:font-semibold hover:drop-shadow-md hover:scale-110 ease-in-out duration-300"
+          onClick={() => {
             setToday(currentDate);
-          }}>today</h1>
+          }}
+        >
+          today
+        </h1>
         <MdKeyboardArrowRight
-          className="w-8 h-8 cursor-pointer hover:bg-lightbr rounded-[16px] hover:scale-125 ease-in-out duration-300"
+          className="w-8 h-8 cursor-pointer text-br hover:bg-br2 hover:text-softbr rounded-[16px] hover:drop-shadow-md hover:scale-125 ease-in-out duration-300"
           onClick={() => {
             setToday(today.month(today.month() + 1));
           }}
         />
       </div>
-      <div className="flex justify-center items-center h-full pt-3">
-        <div className="w-[800px] h-[725px] border-2 border-lightbr rounded-[35px] select-none">
-          <div className="text-center grid grid-cols-7 font-semibold border-b-2 border-lightbr">
+      <div ref={calendarRef} className="flex justify-center items-center w-full h-full pt-3">
+        <div
+          className={`calendar-container w-[800px] h-[725px] border-2 border-br2 rounded-[35px] select-none`}
+          style={{ transform: `translateX(${calendarOffset}px)` }}
+        >
+          <div className="text-center grid grid-cols-7 font-semibold border-b-2 border-br2">
             {days.map((day, index) => {
               return (
                 <h1
@@ -55,16 +98,22 @@ export default function App() {
               {generateDate(today.month(), today.year()).map(
                 ({ date, currentMonth, today }, index) => {
                   const hoverClass = currentMonth
-                    ? "hover:bg-matcha hover:text-white"
-                    : "hover:bg-lightbr";
+                    ? "hover:bg-softbr hover:text-white"
+                    : "hover:bg-br2";
                   const hoverClass2 = today
-                    ? "text-matcha hover:bg-softbr hover:text-white"
-                    : "hover:bg-matcha";
+                    ? "text-matcha2 hover:bg-matcha2 hover:text-white"
+                    : "hover:bg-br2";
 
                   return (
                     <div
                       key={index}
                       className={`${hoverClass2} select-none scale-75 hover:scale-100 cursor-pointer transition duration-300 text-[36px] text-softbr font-light font-sans flex justify-center items-center h-28 rounded-[30px] ${hoverClass} `}
+                      onClick={() => {
+                        if (currentMonth && !hasMoved) {
+                          onDateClick(date);
+                        }
+                      }}
+                      
                     >
                       <h1
                         className={OutsideDates(
@@ -81,6 +130,7 @@ export default function App() {
             </div>
           </div>
         </div>
+        <TextBoxes selectedDate={selectedDate} isVisible={showTextBoxes} />
       </div>
     </div>
   );
