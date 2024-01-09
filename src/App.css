@@ -1,88 +1,136 @@
 .calendar-container {
-    transition: transform 0.6s ease-in-out;
-    overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  overflow: hidden;
 }
 
 @keyframes slideUp {
-    0% {
-      /* transform: translateY(150%); */
-      opacity: 0;
-    }
-    100% {
-      /* transform: translateY(0%); */
-      opacity: 1;
-    }
-  }  
-  
-  .text-box-container {
-    background: white;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-left: 150px;
-    padding: 0px;
-    width: 0px;
-    position: absolute;
-    animation: slideUp 2s ease-out both;
+  0% {
+    transform: translateY(150%);
+    opacity: 0;
   }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}  
 
-.text-box-container textarea {
-    resize: none;
-    min-height: 100px;
-    margin-left: 150px;
+.text-box-container {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 150px;
+  padding: 0px;
+  width: 0px;
+  position: absolute;
+  top: 170px;
+  animation: slideUp 1s ease-out both;
 }
 
+.text-box-container textarea {
+  resize: none;
+  min-height: 100px;
+  margin-left: 150px;
+}
+
+.clear-text-button {
+  /* add styling for your button here */
+  cursor: pointer;
+  /* Adjust the following properties as needed */
+  margin-left: 515px; /* Adjust this to position your button as desired */
+  position: relative;
+  bottom: 130px;
+  opacity: 15%;
+  border: none;
+  scale: 2;
+  color: #e04f4f;
+}
+
+
 body {
-    overflow-y: hidden; /* This will hide the vertical scrollbar */
-    height: 100%; /* This makes sure the body takes the full viewport height */
-  }
+  overflow-y: hidden; /* This will hide the vertical scrollbar */
+  height: 100%; /* This makes sure the body takes the full viewport height */
+}
 
-  .text-box-reminders {
-    margin-left: 305px;
-    position:fixed;
-    margin-top: 10px;
-    padding-left: 4px;
-    border-radius: 10px;
-    padding-right: 4px;
-  }
+.text-box-reminders {
+  margin-left: 305px;
+  position:fixed;
+  margin-top: 10px;
+  padding-left: 4px;
+  border-radius: 10px;
+  padding-right: 4px;
+}
 
-  .text-box-reminders.focused {
-    transform: translateY(-20px);
-    background: #f2ded0;
-    border-radius: 10px;
-  }
+.text-box-reminders.focused {
+  transform: translateY(-20px);
+  background: #f2ded0;
+  border-radius: 8px;
+}
 
-  .text-box-daily {
-    margin-left: 305px;
-    position:inherit;
-    margin-top: 258px;
-    padding-left: 4px;
-    border-radius: 10px;
-    padding-right: 4px;
-    text-wrap: nowrap;
+.text-box-daily {
+  margin-left: 305px;
+  position:inherit;
+  margin-top: 267px;
+  padding-left: 4px;
+  border-radius: 10px;
+  padding-right: 4px;
+  text-wrap: nowrap;
 
-  }
+}
 
-  .text-box-daily.focused {
-    transform: translateY(-20px);
-    background: #f2ded0;
-    border-radius: 10px;
-  }
+.text-box-daily.focused {
+  transform: translateY(-20px);
+  background: #f2ded0;
+  border-radius: 8px;
+}
 
-  .text-box-upcoming {
-    margin-left: 280px;
-    position:inherit;
-    margin-top: 505px;
-    padding-left: 4px;
-    border-radius: 10px;
-    padding-right: 4px;
-    text-wrap: nowrap;
+.text-box-upcoming {
+  margin-left: 280px;
+  position:inherit;
+  margin-top: 523px;
+  padding-left: 4px;
+  border-radius: 10px;
+  padding-right: 4px;
+  text-wrap: nowrap;
 
-  }
+}
 
-  .text-box-upcoming.focused {
-    transform: translateY(-20px);
-    background: #f2ded0;
-    border-radius: 10px;
-  }
-  
+.text-box-upcoming.focused {
+  transform: translateY(-20px);
+  background: #f2ded0;
+  border-radius: 8px;
+}
+
+.date-cell {
+  position: relative;
+  /* other styles */
+}
+
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: block; /* change to block to stack vertically */
+  position: absolute; /* changed from fixed to absolute */
+}
+
+/* Adjust the top and left values to position your dots correctly. */
+.reminders-dot {
+  /* background-color: red; */
+  bottom: 35px; /* adjust as needed */
+  right: 37px; /* adjust as needed */
+}
+
+.daily-tasks-dot {
+  /* background-color: green; */
+  bottom: 20px; /* adjust as needed */
+  right: 37px; /* adjust as needed */
+}
+
+.upcoming-events-dot {
+  /* background-color: blue; */
+  bottom: 5px; /* adjust as needed */
+  right: 37px; /* adjust as needed */
+}
+
