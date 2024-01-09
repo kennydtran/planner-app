@@ -34,12 +34,13 @@ export default function App() {
     setShowTextBoxes(true);
     setTimeout(() => {
       setIsAnimationComplete(true);
-    }, 600);
+    }, 0);
   };
 
   const handleClickOutside = (event) => {
     if (calendarRef.current && !calendarRef.current.contains(event.target)) {
       moveCalendarOriginal(setHasMoved, setCalendarOffset);
+
       setIsAnimationComplete(false);
       setShowTextBoxes(false);
       setSelectedDate(null);
@@ -125,7 +126,7 @@ export default function App() {
                       if (isSelectedDate && today) {
                         backgroundClass = "bg-matcha2 text-white";
                       } else if (isSelectedDate) {
-                        backgroundClass = "bg-br2 text-white";
+                        backgroundClass = "bg-softbr text-white";
                       }
 
                       return (
@@ -161,9 +162,8 @@ export default function App() {
         </div>
       </div>
       <footer className="bg-brback p-[200px]">
-      {/* Footer content goes here */}
-    </footer>
+        {/* Footer content goes here */}
+      </footer>
     </div>
-    
   );
 }

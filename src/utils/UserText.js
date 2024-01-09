@@ -6,6 +6,13 @@ export default function TextBoxes({ selectedDate, isVisible }) {
   const [dailyTasks, setDailyTasks] = useState('');
   const [upcomingEvents, setUpcomingEvents] = useState('');
   
+  const handleFocus = (e) => {
+    e.target.previousSibling.classList.add('focused');
+  };
+
+  const handleBlur = (e) => {
+    e.target.previousSibling.classList.remove('focused');
+  };
 
   useEffect(() => {
     const storedData = localStorage.getItem(selectedDate);
@@ -36,9 +43,12 @@ export default function TextBoxes({ selectedDate, isVisible }) {
 
   return (
     <div className="text-box-container">
-      <textarea className='w-[300px] h-[237px] p-[20px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' style={{ outline: 'none'}} value={reminders} onChange={(e) => setReminders(e.target.value)} placeholder="Reminders" />
-      <textarea className='w-[300px] h-[237px] p-[20px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' style={{ outline: 'none'}} value={dailyTasks} onChange={(e) => setDailyTasks(e.target.value)} placeholder="Daily Tasks" />
-      <textarea className='w-[300px] h-[237px] p-[20px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' style={{ outline: 'none'}} value={upcomingEvents} onChange={(e) => setUpcomingEvents(e.target.value)} placeholder="Upcoming Events" />
+      <div className='text-box-reminders transition ease-in-out duration-300 bg-brback font-bold select-none'>Reminders</div>
+      <textarea className='reminders w-[400px] h-[237px] px-[20px] py-[40px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={reminders} onChange={(e) => setReminders(e.target.value)}/>
+      <div className='text-box-daily transition ease-in-out duration-300 bg-brback font-bold select-none'>Daily Tasks</div>
+      <textarea className='daily w-[400px] h-[237px] px-[20px] py-[40px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={dailyTasks} onChange={(e) => setDailyTasks(e.target.value)}/>
+      <div className='text-box-upcoming transition ease-in-out duration-300 bg-brback font-bold select-none'>Upcoming Events</div>
+      <textarea className='upcoming w-[400px] h-[237px] px-[20px] py-[40px] rounded-[30px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={upcomingEvents} onChange={(e) => setUpcomingEvents(e.target.value)}/>
     </div>
   );
 }

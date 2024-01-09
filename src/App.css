@@ -3,7 +3,19 @@
     overflow: hidden;
 }
 
-.text-box-container {
+@keyframes slideUp {
+    0% {
+      /* transform: translateY(150%); */
+      opacity: 0;
+    }
+    100% {
+      /* transform: translateY(0%); */
+      opacity: 1;
+    }
+  }  
+  
+  .text-box-container {
+    background: white;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -11,8 +23,8 @@
     padding: 0px;
     width: 0px;
     position: absolute;
-    transition: transform 0.6s ease-in-out;
-}
+    animation: slideUp 2s ease-out both;
+  }
 
 .text-box-container textarea {
     resize: none;
@@ -25,3 +37,52 @@ body {
     height: 100%; /* This makes sure the body takes the full viewport height */
   }
 
+  .text-box-reminders {
+    margin-left: 305px;
+    position:fixed;
+    margin-top: 10px;
+    padding-left: 4px;
+    border-radius: 10px;
+    padding-right: 4px;
+  }
+
+  .text-box-reminders.focused {
+    transform: translateY(-20px);
+    background: #f2ded0;
+    border-radius: 10px;
+  }
+
+  .text-box-daily {
+    margin-left: 305px;
+    position:inherit;
+    margin-top: 258px;
+    padding-left: 4px;
+    border-radius: 10px;
+    padding-right: 4px;
+    text-wrap: nowrap;
+
+  }
+
+  .text-box-daily.focused {
+    transform: translateY(-20px);
+    background: #f2ded0;
+    border-radius: 10px;
+  }
+
+  .text-box-upcoming {
+    margin-left: 280px;
+    position:inherit;
+    margin-top: 505px;
+    padding-left: 4px;
+    border-radius: 10px;
+    padding-right: 4px;
+    text-wrap: nowrap;
+
+  }
+
+  .text-box-upcoming.focused {
+    transform: translateY(-20px);
+    background: #f2ded0;
+    border-radius: 10px;
+  }
+  
