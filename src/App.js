@@ -56,7 +56,7 @@ export default function App() {
   return (
     <div className="bg-brback">
       <div>
-        <h1 className="pl-14 pt-4 w-[460px] font-bold text-[50px] text-br origin-top-left hover:rotate-[3deg] select-none hover:scale-110 hover: duration-300 drop-shadow-md hover:drop-shadow-xl">
+        <h1 className="pl-14 pt-4 w-[460px] font-bold font-sans text-[50px] text-br origin-top-left hover:rotate-[3deg] select-none hover:scale-110 hover: duration-300 drop-shadow-md hover:drop-shadow-xl">
           {months[today.month()]}, {today.year()}
         </h1>
         <div
@@ -90,15 +90,15 @@ export default function App() {
             className="flex mx-auto justify-center items-center w-[800px] h-full"
           >
             <div
-              className={`calendar-container w-[800px] h-[732px] border-4 border-br2 rounded-[15px] select-none`}
+              className={`calendar-container w-[800px] h-[732px] border-4 border-brgray rounded-[15px] select-none`}
               style={{ transform: `translateX(${calendarOffset}px)` }}
             >
-              <div className="text-center grid grid-cols-7 font-semibold border-b-4 border-br2">
+              <div className="text-center grid grid-cols-7 font-semibold border-b-4 border-brgray">
                 {days.map((day, index) => {
                   return (
                     <h1
                       key={index}
-                      className="h-12 flex justify-center items-center text-[24px] text-br hover:scale-150 duration-300"
+                      className="h-12 flex justify-center items-center text-[24px] text-br hover:scale-150 ease-in-out duration-300"
                     >
                       {day}
                     </h1>

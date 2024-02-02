@@ -68,15 +68,15 @@ export default function TextBoxes({ selectedDate, isVisible }) {
       <div className='text-box-reminders transition ease-in-out duration-300 bg-brback font-bold select-none text-br'>Reminders
       </div>
       
-      <textarea className='reminders w-[400px] h-[220px] px-[20px] py-[40px] pr-[40px] rounded-[15px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={reminders} onChange={(e) => setReminders(e.target.value)}/>
+      <textarea className='reminders w-[400px] h-[220px] px-[20px] py-[40px] pr-[40px] rounded-[15px] border-4 border-brgray placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={reminders} onChange={(e) => setReminders(e.target.value)}/>
       <IoTrashOutline onClick={clearReminders} className='clear-text-button hover:scale-110 hover:opacity-[30%] transition ease-in-out duration-300'>Clear</IoTrashOutline>
       <div className='text-box-daily transition ease-in-out duration-300 bg-brback font-bold select-none text-br'>Daily Tasks
       </div>
-      <textarea className='daily w-[400px] h-[220px] px-[20px] py-[40px] pr-[40px] rounded-[15px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={dailyTasks} onChange={(e) => setDailyTasks(e.target.value)}/>
+      <textarea className='daily w-[400px] h-[220px] px-[20px] py-[40px] pr-[40px] rounded-[15px] border-4 border-brgray placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={dailyTasks} onChange={(e) => setDailyTasks(e.target.value)}/>
       <IoTrashOutline onClick={clearDailyTasks} className='clear-text-button hover:scale-110 hover:opacity-[30%] transition ease-in-out duration-300'>Clear</IoTrashOutline>
       <div className='text-box-upcoming transition ease-in-out duration-300 bg-brback font-bold select-none text-br'>Upcoming Events
       </div>
-      <textarea className='upcoming w-[400px] h-[220px] px-[20px] py-[40px] pr-[40px] rounded-[15px] border-4 border-br2 placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={upcomingEvents} onChange={(e) => setUpcomingEvents(e.target.value)}/>
+      <textarea className='upcoming w-[400px] h-[220px] px-[20px] py-[40px] pr-[40px] rounded-[15px] border-4 border-brgray placeholder:text-br placeholder:font-light select-none text-br bg-brback' onFocus={handleFocus} onBlur={handleBlur} style={{ outline: 'none'}} value={upcomingEvents} onChange={(e) => setUpcomingEvents(e.target.value)}/>
       <IoTrashOutline onClick={clearUpcomingEvents} className='clear-text-button hover:scale-110 hover:opacity-[30%] transition ease-in-out duration-300'>Clear</IoTrashOutline>
     </div>
   );

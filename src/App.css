@@ -63,7 +63,8 @@ body {
 
 .text-box-reminders.focused {
   transform: translateY(-20px);
-  background: #f2ded0;
+  background: #b8a191;
+  @apply text-brback;
   border-radius: 8px;
 }
 
@@ -80,7 +81,8 @@ body {
 
 .text-box-daily.focused {
   transform: translateY(-20px);
-  background: #f2ded0;
+  background: #b8a191;
+  @apply text-brback;
   border-radius: 8px;
 }
 
@@ -97,7 +99,8 @@ body {
 
 .text-box-upcoming.focused {
   transform: translateY(-20px);
-  background: #f2ded0;
+  background: #b8a191;
+  @apply text-brback;
   border-radius: 8px;
 }
 
